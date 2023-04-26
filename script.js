@@ -67,7 +67,7 @@ class MainMenu extends Phaser.Scene
     {
         let backgroundMusic = this.sound.add('song');
         backgroundMusic.play();
-        backgroundMusic.setVolume(0.5);
+        //backgroundMusic.setVolume(0.5);
 
         let main = this.add.text(350, 250, "MAIN MENU");
 
@@ -107,18 +107,51 @@ class GameSceneOne extends Phaser.Scene
 
     preload ()
     {
-
+        this.load.image("ghost-1", "assets/Mega-Ghost.png");
     }
 
     create ()
     {
+        this.ghost = this.add.sprite(50, 50, "ghost-1");
+        this.ghost.setScale(0.10);
+        
+        //add keys
+        this.keys = this.input.keyboard.addKeys("W,A,S,D");
 
-        this.add.text(250, 50, "TEST");
+        /*this.keys = {
+            W: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
+            A: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
+            S: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+            D: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
+        };*/
     }
 
     update ()
     {
+        const speed = 4;
 
+        // Update the ghost's position based on the keys being pressed
+        if (this.keys.W.isDown) 
+        {
+            this.ghost.y -= speed;
+        }
+
+        if (this.keys.A.isDown) 
+        {
+            this.ghost.x -= speed;
+            this.ghost.flipX = false;
+        }
+
+        if (this.keys.S.isDown) 
+        {
+            this.ghost.y += speed;
+        }
+
+        if (this.keys.D.isDown) 
+        {
+            this.ghost.x += speed;
+            this.ghost.flipX = true;
+        }
     }
 }
 

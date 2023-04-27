@@ -135,24 +135,53 @@ class GameSceneOne extends Phaser.Scene
     preload ()
     {
         this.load.image("ghost-1", "assets/Mega-Ghost.png");
+        this.load.image("ghost-2", "assets/Mega-Ghost-2.png");
     }
 
     create ()
     {
-        this.ghost = this.add.sprite(50, 50, "ghost-1");
-        this.ghost.setScale(0.10);
-        
+        this.ghost = this.add.sprite(100, 200, "ghost-1");
+        this.ghostTwo = this.add.sprite(700, 200, "ghost-2");
+
+        this.ghost.setScale(0.35);
+        this.ghostTwo.setScale(0.60);
+
+        let animation = this.tweens.add({
+            targets: [this.ghost, this.ghostTwo],
+            ease: 'linear',
+            y:{from: 200, to: 220},
+            duration: 3000,
+            repeat: -1,
+        })
+
+        this.time.delayedCall(2000, () => this.ghost.flipX = true);
+        this.time.delayedCall(3500, () => {
+            let animationTwo = this.tweens.add({
+                targets: [this.ghost],
+                ease: 'linear',
+                x:{from: 100, to: 325},
+                duration: 3000,
+            })
+
+            let animationThree = this.tweens.add({
+                targets: [this.ghostTwo],
+                ease: 'linear',
+                x:{from: 700, to: 475},
+                duraton: 3000,
+            })
+        })
         //add keys
-        this.keys = this.input.keyboard.addKeys("W,A,S,D");
+        //this.keys = this.input.keyboard.addKeys("W,A,S,D");
         
     }
 
     update ()
     {
-        const speed = 4;
+        //const speed = 4;
 
-        // Update the ghost's position based on the keys being pressed
-        if (this.keys.W.isDown) 
+        // Update the ghost's position based on the keys being pressed this is for controls
+        // commented out for animation
+        /*if (this.keys.W.isDown) 
         {
             this.ghost.y -= speed;
         }
@@ -172,7 +201,7 @@ class GameSceneOne extends Phaser.Scene
         {
             this.ghost.x += speed;
             this.ghost.flipX = true;
-        }
+        }*/
     }
 }
 
@@ -181,7 +210,7 @@ let config = {
     width: 800,
     height: 500,
     backgroundColor: '#4F4B5A',
-    scene: [Intro, MainMenu, GameSceneOne],
+    scene: [GameSceneOne],//scene: [Intro, MainMenu, GameSceneOne],
 }
 
 let game = new Phaser.Game(config);

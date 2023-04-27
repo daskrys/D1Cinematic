@@ -155,7 +155,7 @@ class GameSceneOne extends Phaser.Scene
         })
 
         this.time.delayedCall(2000, () => this.ghost.flipX = true);
-        this.time.delayedCall(3500, () => {
+        this.time.delayedCall(3500, () => { // main animation function
             let animationTwo = this.tweens.add({
                 targets: [this.ghost],
                 ease: 'linear',
@@ -169,6 +169,7 @@ class GameSceneOne extends Phaser.Scene
                 x:{from: 700, to: 475},
                 duraton: 3000,
             })
+
         })
         //add keys
         //this.keys = this.input.keyboard.addKeys("W,A,S,D");
@@ -210,7 +211,7 @@ let config = {
     width: 800,
     height: 500,
     backgroundColor: '#4F4B5A',
-    scene: [GameSceneOne],//scene: [Intro, MainMenu, GameSceneOne],
+    scene: [Intro, MainMenu, GameSceneOne],
 }
 
 let game = new Phaser.Game(config);

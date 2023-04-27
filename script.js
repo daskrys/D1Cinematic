@@ -95,7 +95,7 @@ class MainMenu extends Phaser.Scene
 
         // });
         this.time.delayedCall(3000, () => {
-            this.add.text(350, 250, "Click to Start");
+            this.add.text(345, 225, "Click to Start");
             
         })
 
@@ -111,6 +111,11 @@ class MainMenu extends Phaser.Scene
                 duration: 2400,
                 ease: 'linear'
             })
+        })
+
+        this.time.delayedCall(9300, () => {
+            this.scene.start('gamesceneone');
+            backgroundMusic.stop();
         })
     }
 

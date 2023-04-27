@@ -61,11 +61,13 @@ class MainMenu extends Phaser.Scene
     preload () 
     {
         this.load.audio("song", 'assets/song.wav');
+        this.load.image("cursor", 'assets/cursor.png');
     }
 
     create ()
     {
         let backgroundMusic = this.sound.add('song');
+        let cursor = this.add.image('cursor');
         backgroundMusic.play();
         //backgroundMusic.setVolume(0.5);
 
@@ -81,15 +83,24 @@ class MainMenu extends Phaser.Scene
         })
 
 
-        this.time.delayedCall(3000, () => {
+        // this.time.delayedCall(3000, () => {
             
-            this.input.on('pointerdown', () => {
-                this.scene.start('gamesceneone');
-                backgroundMusic.stop();
-            });
+        //     this.input.on('pointerdown', () => {
+        //         this.scene.start('gamesceneone');
+        //         backgroundMusic.stop();
+        //     });
 
-            this.add.text(350, 250, "Click to Start");
-        });
+        //     this.add.text(350, 250, "Click to Start");
+
+        // });
+
+        let animation = this.tweens.add({
+            targets: cursor,
+            x: {from: 0, to: 400},
+            y: {from: 400, to: 0},
+            duration: 2400,
+            ease: 'linear'
+        })
     }
 
     update ()
@@ -117,13 +128,7 @@ class GameSceneOne extends Phaser.Scene
         
         //add keys
         this.keys = this.input.keyboard.addKeys("W,A,S,D");
-
-        /*this.keys = {
-            W: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
-            A: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
-            S: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
-            D: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
-        };*/
+        
     }
 
     update ()
@@ -156,6 +161,7 @@ class GameSceneOne extends Phaser.Scene
 }
 
 let config = {
+    type: Phaser.WEBGL,
     width: 800,
     height: 500,
     backgroundColor: '#4F4B5A',

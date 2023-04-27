@@ -95,19 +95,22 @@ class MainMenu extends Phaser.Scene
 
         // });
         this.time.delayedCall(3000, () => {
-            this.add.text(345, 225, "Click to Start");
+            this.add.text(340, 225, "Start");
+            this.add.text(340, 250, "Options");
+            this.add.text(340, 275, "Credits");
+            this.add.text(325, 300, "[REDACTED]");
             
         })
 
-        const cursor = this.add.image(50, 450, 'cursor');
+        const cursor = this.add.image(750, 50, 'cursor');
         cursor.setScale(0.15);
         cursor.setDepth(1);
 
         this.time.delayedCall(6000, () => {
             let animation = this.tweens.add({
                 targets: cursor,
-                x: {from: 50, to: 400},
-                y: {from: 450, to: 250},
+                x: {from: 750, to: 360},
+                y: {from: 50, to: 250},
                 duration: 2400,
                 ease: 'linear'
             })
@@ -136,10 +139,14 @@ class GameSceneOne extends Phaser.Scene
     {
         this.load.image("ghost-1", "assets/Mega-Ghost.png");
         this.load.image("ghost-2", "assets/Mega-Ghost-2.png");
+        this.load.audio("song-2", "assets/song_2.wav");
     }
 
     create ()
     {
+        let music = this.sound.add('song-2');
+        music.loop = true;
+        music.play();
         this.ghost = this.add.sprite(100, 200, "ghost-1");
         this.ghostTwo = this.add.sprite(700, 200, "ghost-2");
 
@@ -155,6 +162,7 @@ class GameSceneOne extends Phaser.Scene
         })
 
         this.time.delayedCall(2000, () => this.ghost.flipX = true);
+
         this.time.delayedCall(3500, () => { // main animation function
             let animationTwo = this.tweens.add({
                 targets: [this.ghost],

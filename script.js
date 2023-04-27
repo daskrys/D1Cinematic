@@ -72,7 +72,7 @@ class MainMenu extends Phaser.Scene
         backgroundMusic.play();
         //backgroundMusic.setVolume(0.5);
 
-        let main = this.add.text(350, 250, "MAIN MENU");
+        let main = this.add.text(340, 250, "MAIN MENU");
 
         main.setScale(1.25);
 
@@ -95,28 +95,28 @@ class MainMenu extends Phaser.Scene
 
         // });
         this.time.delayedCall(3000, () => {
-            this.add.text(340, 225, "Start");
-            this.add.text(340, 250, "Options");
-            this.add.text(340, 275, "Credits");
-            this.add.text(325, 300, "[REDACTED]");
+            this.add.text(360, 100, "Start");
+            this.add.text(360, 125, "Options");
+            this.add.text(360, 150, "Credits");
+            this.add.text(345, 175, "[REDACTED]");
             
         })
 
-        const cursor = this.add.image(750, 50, 'cursor');
+        const cursor = this.add.image(780, 50, 'cursor');
         cursor.setScale(0.15);
         cursor.setDepth(1);
 
         this.time.delayedCall(6000, () => {
             let animation = this.tweens.add({
                 targets: cursor,
-                x: {from: 750, to: 360},
-                y: {from: 50, to: 250},
-                duration: 2400,
+                x: {from: 780, to: 380},
+                y: {from: 50, to: 125},
+                duration: 3400,
                 ease: 'linear'
             })
         })
 
-        this.time.delayedCall(9300, () => {
+        this.time.delayedCall(10000, () => {
             this.scene.start('gamesceneone');
             backgroundMusic.stop();
         })
@@ -177,6 +177,9 @@ class GameSceneOne extends Phaser.Scene
                 x:{from: 700, to: 475},
                 duraton: 3000,
             })
+
+            let textOne = this.add.text(300, 500, "TEST");
+            
 
         })
         //add keys

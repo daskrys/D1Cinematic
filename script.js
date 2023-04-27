@@ -67,7 +67,7 @@ class MainMenu extends Phaser.Scene
     create ()
     {
         let backgroundMusic = this.sound.add('song');
-        let cursor = this.add.image('cursor');
+        const cursor = this.add.image(55, 55, 'cursor');
         backgroundMusic.play();
         //backgroundMusic.setVolume(0.5);
 
@@ -100,7 +100,7 @@ class MainMenu extends Phaser.Scene
             y: {from: 400, to: 0},
             duration: 2400,
             ease: 'linear'
-        })
+        }, this)
     }
 
     update ()

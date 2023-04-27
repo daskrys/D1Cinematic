@@ -67,7 +67,8 @@ class MainMenu extends Phaser.Scene
     create ()
     {
         let backgroundMusic = this.sound.add('song');
-        const cursor = this.add.image(55, 55, 'cursor');
+        //const cursor = this.add.image(50, 450, 'cursor');
+        //cursor.setScale(0.15);
         backgroundMusic.play();
         //backgroundMusic.setVolume(0.5);
 
@@ -93,14 +94,24 @@ class MainMenu extends Phaser.Scene
         //     this.add.text(350, 250, "Click to Start");
 
         // });
+        this.time.delayedCall(3000, () => {
+            this.add.text(350, 250, "Click to Start");
+            
+        })
 
-        let animation = this.tweens.add({
-            targets: cursor,
-            x: {from: 0, to: 400},
-            y: {from: 400, to: 0},
-            duration: 2400,
-            ease: 'linear'
-        }, this)
+        const cursor = this.add.image(50, 450, 'cursor');
+        cursor.setScale(0.15);
+        cursor.setDepth(1);
+
+        this.time.delayedCall(6000, () => {
+            let animation = this.tweens.add({
+                targets: cursor,
+                x: {from: 50, to: 400},
+                y: {from: 450, to: 250},
+                duration: 2400,
+                ease: 'linear'
+            })
+        })
     }
 
     update ()

@@ -309,6 +309,7 @@ class GameSceneTwo extends Phaser.Scene {
                         this.typeWrite(text3, cont3, 0, speed); 
 
                         this.time.delayedCall(6000, () => {
+
                             this.cameras.main.fadeOut(1000, 0, 0, 0, (camera, progress) => {
                                 if (progress === 1) {
                                     this.scene.start('outro');
